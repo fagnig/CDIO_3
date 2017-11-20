@@ -14,7 +14,7 @@ public class Player {
 		name = newName;
 		color = newColor;
 		
-		account = new Account(30000);
+		account = new Account(Controller.PLAYER_START_BALANCE);
 		free = true;
 		bankrupt = false;
 		gotCard = false;

@@ -1,6 +1,12 @@
 package spil;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Controller {
+	static int PLAYER_START_BALANCE = 30000;
+	
 	Board board;
 	int currentTurn;
 	Dice dice;
@@ -27,11 +33,13 @@ public class Controller {
 	public ChanceCard[] shuffleCards(ChanceCard[] cards) {
 		ChanceCard[] tempCards = new ChanceCard[20];
 		
-		//SHUFFLE tempCards
+		List<ChanceCard> list = Arrays.asList(tempCards);
+		Collections.shuffle(list);
+		list.toArray(tempCards);
 		
 		return tempCards;
 	}
-	
+
 	public void playTurn(Player player) {
 		
 	}

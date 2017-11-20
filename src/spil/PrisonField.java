@@ -6,9 +6,9 @@ public class PrisonField extends Field {
 		super(newText);
 	}
 
-	@Override
-	public void landOnField() {
-		//lutz
+	public void landOnField(Player landingPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

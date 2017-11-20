@@ -11,5 +11,5 @@ public abstract class Field {
 		fieldText = newText;
 	}
 	
-	public abstract void landOnField();
+	public abstract void landOnField(Player landingPlayer);
 }

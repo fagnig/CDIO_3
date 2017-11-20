@@ -11,9 +11,9 @@ public class OwnableField extends Field {
 		rent = newPrice / 2; //??
 	}
 
-	@Override
-	public void landOnField() {
-		//abe
+	public void landOnField(Player landingPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
-
+	
 }

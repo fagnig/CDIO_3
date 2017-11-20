@@ -7,8 +7,9 @@ public class ChanceField extends Field{
 	}
 
 	@Override
-	public void landOnField() {
-		//ebin
+	public void landOnField(Player landingPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
