@@ -33,9 +33,9 @@ public class Controller {
 	public ChanceCard[] shuffleCards(ChanceCard[] cards) {
 		ChanceCard[] tempCards = new ChanceCard[20];
 		
-		List<ChanceCard> list = Arrays.asList(tempCards);
-		Collections.shuffle(list);
-		list.toArray(tempCards);
+		List<ChanceCard> list = Arrays.asList(tempCards); //Convert to list
+		Collections.shuffle(list); //Shuffle list
+		list.toArray(tempCards); //Convert back to array
 		
 		return tempCards;
 	}
