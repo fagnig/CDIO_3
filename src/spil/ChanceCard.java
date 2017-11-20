@@ -1,7 +1,7 @@
 package spil;
 
 public class ChanceCard {
-	static int cardCounter;
+	static int cardCounter = 0;
 	String chanceText;
 	int chanceID;
 	
@@ -12,7 +12,7 @@ public class ChanceCard {
 		cardCounter++;
 	}
 	
-	public void resolveChance(){
+	public void resolveChance(int id){
 		
 	}
 }
