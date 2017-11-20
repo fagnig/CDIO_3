@@ -11,4 +11,8 @@ public class ChanceCard {
 		
 		cardCounter++;
 	}
+	
+	public void resolveChance(){
+		
+	}
 }
