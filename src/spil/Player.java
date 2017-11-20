@@ -10,7 +10,7 @@ public class Player {
 	boolean bankrupt;
 	boolean gotCard;
 	
-	Player(String newName, Color newColor){
+	public Player(String newName, Color newColor){
 		name = newName;
 		color = newColor;
 		

@@ -1,13 +1,10 @@
 package spil;
 
 public abstract class Field {
-	public class NeutralField {
-
-	}
 
 	String fieldText;
 	
-	Field(String newText){
+	public Field(String newText){
 		fieldText = newText;
 	}
 	

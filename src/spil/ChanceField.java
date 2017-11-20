@@ -2,7 +2,7 @@ package spil;
 
 public class ChanceField extends Field{
 
-	ChanceField(String newText) {
+	public ChanceField(String newText) {
 		super(newText);
 	}
 

@@ -5,7 +5,7 @@ public class ChanceCard {
 	String chanceText;
 	int chanceID;
 	
-	ChanceCard(String cardText){
+	public ChanceCard(String cardText){
 		chanceText = cardText;
 		chanceID = cardCounter;
 		

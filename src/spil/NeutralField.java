@@ -2,7 +2,7 @@ package spil;
 
 public class NeutralField extends Field {
 
-	NeutralField(String newText) {
+	public NeutralField(String newText) {
 		super(newText);
 	}
 
