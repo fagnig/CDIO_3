@@ -9,11 +9,13 @@ public class Player {
 	boolean free;
 	boolean bankrupt;
 	boolean gotCard;
+	int location;
 	
 	public Player(String newName, Color newColor){
 		name = newName;
 		color = newColor;
 		
+		location = 0;
 		account = new Account(Controller.PLAYER_START_BALANCE);
 		free = true;
 		bankrupt = false;
