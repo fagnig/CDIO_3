@@ -52,7 +52,7 @@ public class Controller {
 		chanceCard[3] = new ChanceCard("Ryk frem til et orange felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
 		chanceCard[4] = new ChanceCard("Ryk et felt frem, eller tag et chancekort mere");
 		chanceCard[5] = new ChanceCard("Tag et chancekort mere");
-		chanceCard[6] = new ChanceCard("Du har spist for meget, betal 2 mønter til banken");
+		chanceCard[6] = new ChanceCard("Du har spist for meget slik, betal 2 mønter til banken");
 		chanceCard[7] = new ChanceCard("Ryk frem til et grønt eller orange felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
 		chanceCard[8] = new ChanceCard("Ryk frem til lyseblåt felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
 		chanceCard[9] = new ChanceCard("Når du kommer i fængsel kan du bruge dette kort til at komme ud gratis");
