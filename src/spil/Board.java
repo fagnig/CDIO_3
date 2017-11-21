@@ -1,7 +1,9 @@
 package spil;
 
 public class Board {
-	Field[] fields = new Field[24];
+
+	Field[] fields = new Field[24];	
+
 	
 	public void init() {
 		fields[0] = new NeutralField("Start");
