@@ -71,7 +71,7 @@ public class ChanceCard {
 		case 18 :{
 			
 		}
-		case 19 :{ 
+		case 19 :{  
 			
 		}
 	break:
