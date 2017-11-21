@@ -74,7 +74,7 @@ public class ChanceCard {
 		case 19 :{  
 			
 		}
-	break:
+	break;
 		}
 	}
 }
