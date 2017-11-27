@@ -3,13 +3,13 @@ package spil;
 import java.awt.Color;
 
 public class Player {
-	String name;
-	Color color;
-	Account account;
-	boolean free;
-	boolean bankrupt;
-	boolean gotCard;
-	int location;
+	private String name;
+	private Color color;
+	private Account account;
+	private boolean free;
+	private boolean bankrupt;
+	private boolean gotCard;
+	private int location;
 	
 	public Player(String newName){
 		name = newName;
@@ -21,8 +21,15 @@ public class Player {
 		gotCard = false;
 	}
 	
+	public void add(int value) {
+		account.add(value);
+	}
+	
 	public void setLocation(int newLoc) {
 		location = newLoc;
+	}
+	public void move(int steps) {
+		location = (location+steps)%24;
 	}
 	
 	public String getName() {
@@ -32,4 +39,38 @@ public class Player {
 	public int getLocation() {
 		return location;
 	}
+	public boolean getFree() {
+		return free;
+	}
+	public void setFree() {
+		if (free == true)
+			free = false;
+		else free = true;
+	}
+	public boolean isBankrupt() {
+		return bankrupt;
+	}
+
+	public void setBankrupt() {
+		bankrupt = true;
+	}
+
+	public boolean isGotCard() {
+		return gotCard;
+	}
+
+	public void setGotCard() {
+		if (this.gotCard)
+			gotCard = false;
+		else gotCard = true;
+			
+	}
+	public int getBalance() {
+	return account.getBalance();
+			}
+
+	public Color getColor() {
+		return color;
+	}
+	
 }

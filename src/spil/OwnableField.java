@@ -3,11 +3,11 @@ package spil;
 import java.awt.Color;
 
 public class OwnableField extends Field {
-	Player owner;
-	Color color;
-	int rent;
-	int price;
-	boolean isOwnable = true;
+	private Player owner;
+	private	Color color;
+	private int rent;
+	private int price;
+	private boolean isOwnable = true;
 	
 	public OwnableField(String newText, Color Color, int newPrice) {
 		super(newText);
@@ -18,14 +18,18 @@ public class OwnableField extends Field {
 
 	public void landOnField(Player landingPlayer) {
 		if (owner != null){
-			landingPlayer.account.add(-rent);
-			owner.account.add(rent);
+			landingPlayer.add(-rent);
+			owner.add(rent);
 		}
 		else{
-			landingPlayer.account.add(-price);
+			landingPlayer.add(-price);
 			owner = landingPlayer;
 		}
 		
 	}
-	
+	public Color getColor() {
+		return color;
+
+	}
+
 }

@@ -14,4 +14,8 @@ public abstract class Field {
 	}
 	
 	public abstract void landOnField(Player landingPlayer);
+	
+	public Color getColor() {
+		return color;
+	}
 }

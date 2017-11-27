@@ -8,7 +8,7 @@ public class NeutralField extends Field {
 
 	@Override
 	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

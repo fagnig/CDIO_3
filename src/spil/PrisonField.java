@@ -8,6 +8,7 @@ public class PrisonField extends Field {
 
 	public void landOnField(Player landingPlayer) {
 		landingPlayer.setLocation(6);
+		landingPlayer.setFree();
 	}
 
 }
