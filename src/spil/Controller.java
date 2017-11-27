@@ -1,21 +1,43 @@
 package spil;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import gui_codebehind.*;
+import gui_main.*;
+import gui_fields.*;
+
 public class Controller {
 	static int PLAYER_START_BALANCE = 30000;
 	
+	GUI gui = new GUI();
 	Board board;
 	int currentTurn;
 	Dice dice;
 	
 	Player player[];
 	ChanceCard chanceCard[];
-	
+	ChanceCard usedCardPile[];
+		
 	public void init() {
-		//setup players
+		board.init();
+		currentTurn = 0;
+		
+		int playerAmount = gui.getUserInteger("Hvor mange spillere?", 2, 4);
+		
+		for (int i = 0; i > playerAmount; i++) {
+			gui.getUserString();
+		}
+		
+		for (int i = 0; i > player.length; i++) {
+			GUI_Player tempPlayer = new GUI_Player(player[i].getName(), player[i].account.getBalance());
+			gui.addPlayer(tempPlayer);
+		}
+		
+		
+		go();
 	}
 	
 	public void go() {
@@ -23,7 +45,12 @@ public class Controller {
 	}
 	
 	public void updateGUI() {
-		//refresh GUI
+		GUI.removeAllCars(player[currentTurn].getName());
+		GUI.setCar(player[currentTurn].getLocation(), player[currentTurn].getNavn());
+		int faceValue[] = player[currentTurn].getValues();
+		GUI_BoardController.setDice(faceValue[0], faceValue[1]);
+		GUI.setChanceCard(Language.fieldInfo(kast));
+		GUI.displayChanceCard();
 	}
 	
 	public void playerWon() {
@@ -66,6 +93,91 @@ public class Controller {
 		chanceCard[17] = new ChanceCard("Ryk frem til skaterparken for at lave det perfekte grind, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje ");
 		chanceCard[18] = new ChanceCard("Ryk frem til et lyseblåt eller rødt felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
 		chanceCard[19] = new ChanceCard("Ryk frem til et brunt eller gult felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
-	return chanceCard;
+		return chanceCard;
+	}
+	
+	public void resolveChance(int id){
+		switch (id) {
+		case 0 :{
+			
+		}
+	break;
+		case 1 :{
+			
+		}
+	break;
+		case 2 :{ 
+			
+		}
+	break;
+		case 3 :{
+			
+		}
+	break;
+		case 4 :{
+			
+		}
+	break;
+		case 5 :{
+			
+		}
+	break;
+		case 6 :{
+			
+		}
+	break;
+		case 7 :{
+			
+		}
+	break;
+		case 8 :{
+			
+		}
+	break;
+		case 9 :{
+			
+		}
+	break;
+		case 10 :{
+			
+		}
+	break;
+		case 11 :{
+			
+		}
+	break;
+		case 12 :{
+			
+		}
+	break;
+		case 13 :{
+			
+		}
+	break;
+		case 14 :{
+			
+		}
+	break;
+		case 15 :{
+			
+		}
+	break;
+		case 16 :{
+			
+		}
+	break;
+		case 17 :{
+			
+		}
+	break;
+		case 18 :{
+			
+		}
+	break;
+		case 19 :{  
+			
+		}
+	break;
+		}
 	}
 }

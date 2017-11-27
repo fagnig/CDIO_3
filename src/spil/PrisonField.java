@@ -7,8 +7,7 @@ public class PrisonField extends Field {
 	}
 
 	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
+		landingPlayer.setLocation(18);
 	}
 
 }

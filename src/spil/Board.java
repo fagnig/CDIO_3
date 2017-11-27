@@ -24,7 +24,7 @@ public class Board {
 		fields[15] = new ChanceField("CHANCE");
 		fields[16] = new OwnableField("Legetøjsbutikken", "Gul", 300);
 		fields[17] = new OwnableField("Dyrehandlen", "Gul", 300);
-		fields[18] = new NeutralField("Gå i fængsel");
+		fields[18] = new PrisonField("Gå i fængsel");
 		fields[19] = new OwnableField("Bowlinghallen", "Grøn", 400);
 		fields[20] = new OwnableField("ZOO", "Grøn", 400);
 		fields[21] = new ChanceField("CHANCE");

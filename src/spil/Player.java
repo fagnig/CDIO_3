@@ -21,4 +21,16 @@ public class Player {
 		bankrupt = false;
 		gotCard = false;
 	}
+	
+	public void setLocation(int newLoc) {
+		location = newLoc;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public int getLocation() {
+		return location;
+	}
 }
