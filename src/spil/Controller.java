@@ -46,9 +46,23 @@ public class Controller {
 	
 	public void go() {
 		//Main game loop
+			//show player a message telling him whose turn it is
+			//have him roll the dice
+			//resolve field
+			//update gui
+			//next turn
+		
+		while(true) {
+			gui.showMessage(Language.newTurn(player[currentTurn].getName()));
+			gui.showMessage(Language.diceRoll());
+			
+			
+		}
 	}
 	
 	public void updateGUI() {
+		//set dice
+		//set player position
 		
 	}
 	

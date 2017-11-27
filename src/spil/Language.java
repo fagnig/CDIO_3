@@ -24,4 +24,12 @@ public class Language {
 	public static String playerNameEntry(int i) {
 		return "Spiller "+i+" indtast dit navn";
 	}
+
+	public static String newTurn(String name) {
+		return "Det er "+name+"'s tur";
+	}
+
+	public static String diceRoll() {
+		return "Rul med terningen mester!";
+	}
 }
