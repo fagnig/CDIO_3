@@ -12,11 +12,11 @@ import gui_fields.*;
 public class Controller {
 	static int PLAYER_START_BALANCE = 30000;
 	
-	GUI gui = new GUI();
 	Board board;
 	int currentTurn;
 	Dice dice;
-	
+	GUI gui;
+
 	Player player[];
 	ChanceCard chanceCard[];
 	ChanceCard usedCardPile[];
@@ -24,11 +24,12 @@ public class Controller {
 	public void init() {
 		board.init();
 		currentTurn = 0;
-		
-		int playerAmount = gui.getUserInteger("Hvor mange spillere?", 2, 4);
+		gui = new GUI();
+		int playerAmount = gui.getUserInteger(Language.playerCount(), 2, 4);
 		
 		for (int i = 0; i > playerAmount; i++) {
-			gui.getUserString();
+			String tempName = gui.getUserString(Language.playerNameEntry(i+1));
+			player[i] = new Player(tempName);
 		}
 		
 		for (int i = 0; i > player.length; i++) {
@@ -37,7 +38,7 @@ public class Controller {
 		}
 		
 		
-		go();
+		
 	}
 	
 	public void go() {
@@ -45,16 +46,16 @@ public class Controller {
 	}
 	
 	public void updateGUI() {
-		GUI.removeAllCars(player[currentTurn].getName());
-		GUI.setCar(player[currentTurn].getLocation(), player[currentTurn].getNavn());
-		int faceValue[] = player[currentTurn].getValues();
-		GUI_BoardController.setDice(faceValue[0], faceValue[1]);
-		GUI.setChanceCard(Language.fieldInfo(kast));
-		GUI.displayChanceCard();
+		
 	}
 	
 	public void playerWon() {
-		
+		gui.showMessage(Language.playerWon(player[currentTurn].getName()));
+		if(gui.getUserButtonPressed(Language.replay(), Language.replayConfirm(), Language.replayDecline())==Language.replayConfirm()) {
+			init();
+		} else {
+			System.exit(0);
+		}
 	}
 	
 	public ChanceCard[] shuffleCards(ChanceCard[] cards) {

@@ -1,12 +1,14 @@
 package spil;
 
+import java.awt.Color;
+
 public class OwnableField extends Field {
 	Player owner;
-	String color;
+	Color color;
 	int rent;
 	int price;
 	
-	public OwnableField(String newText, String Color, int newPrice) {
+	public OwnableField(String newText, Color Color, int newPrice) {
 		super(newText);
 		color = Color;
 		price = newPrice;
