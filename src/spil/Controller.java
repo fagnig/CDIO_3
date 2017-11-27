@@ -12,7 +12,7 @@ import gui_fields.*;
 public class Controller {
 	static int PLAYER_START_BALANCE = 30000;
 	
-	Board board;
+	Board board = new Board();
 	int currentTurn;
 	Dice dice;
 	GUI gui;
@@ -24,19 +24,22 @@ public class Controller {
 	public void init() {
 		board.init();
 		currentTurn = 0;
-		gui = new GUI();
-		int playerAmount = gui.getUserInteger(Language.playerCount(), 2, 4);
+		board.initGUI();
 		
-		for (int i = 0; i > playerAmount; i++) {
+		gui = new GUI(board.fieldsGUI);
+		
+		int playerAmount = gui.getUserInteger(Language.playerCount(), 2, 4);
+		player = new Player[playerAmount];
+		
+		for (int i = 0; i < playerAmount; i++) {
 			String tempName = gui.getUserString(Language.playerNameEntry(i+1));
 			player[i] = new Player(tempName);
 		}
 		
-		for (int i = 0; i > player.length; i++) {
+		for (int i = 0; i < player.length; i++) {
 			GUI_Player tempPlayer = new GUI_Player(player[i].getName(), player[i].account.getBalance());
 			gui.addPlayer(tempPlayer);
 		}
-		
 		
 		
 	}
@@ -87,7 +90,7 @@ public class Controller {
 		chanceCard[10] = new ChanceCard("Ryk frem til Strandpromenaden");
 		chanceCard[11] = new ChanceCard("Tag et kort mere");
 		chanceCard[12] = new ChanceCard("Tag et kort mere");
-		chanceCard[13] = new ChanceCard("DET ER DIN FØDSELSDAG, alle give dig en mønt");
+		chanceCard[13] = new ChanceCard("DET ER DIN FØDSELSDAG, alle giver dig en mønt");
 		chanceCard[14] = new ChanceCard("Ryk frem til et pink eller mørkeblåt felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
 		chanceCard[15] = new ChanceCard("Du har lavet alle dine lektier, banken giver dig to mønter");
 		chanceCard[16] = new ChanceCard("Ryk frem til et rødt felt, er det ledigt får du det GRATIS, hvis ikke skal BETALE leje");
@@ -180,5 +183,11 @@ public class Controller {
 		}
 	break;
 		}
+	}
+	
+	public static void main(String [] args) {
+		Controller c = new Controller();
+		c.init();
+		c.go();
 	}
 }

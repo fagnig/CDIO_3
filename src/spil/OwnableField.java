@@ -7,6 +7,7 @@ public class OwnableField extends Field {
 	Color color;
 	int rent;
 	int price;
+	boolean isOwnable = true;
 	
 	public OwnableField(String newText, Color Color, int newPrice) {
 		super(newText);

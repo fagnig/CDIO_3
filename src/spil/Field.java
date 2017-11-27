@@ -1,9 +1,13 @@
 package spil;
 
+import java.awt.Color;
+
 public abstract class Field {
 	String fieldText;
-	String color;
+	Color color;
 	int pointMod;
+	boolean isOwnable = false;
+	boolean isChance = false;
 	
 	public Field(String newText){
 		fieldText = newText;
