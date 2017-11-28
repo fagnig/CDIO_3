@@ -8,7 +8,7 @@ import gui_main.*;
 import gui_fields.*;
 
 public class Controller {
-	static int PLAYER_START_BALANCE = 30000;
+	static int PLAYER_START_BALANCE = 30;
 	
 	Board board = new Board();
 	int currentTurn;
@@ -42,16 +42,9 @@ public class Controller {
 			playerGUI[i]=tempPlayer;
 		}
 		
-		
 	}
 	
 	public void go() {
-		//Main game loop
-			//show player a message telling him whose turn it is
-			//have him roll the dice
-			//resolve field
-			//update gui
-			//next turn
 		
 		while(true) {
 			gui.showMessage(Language.newTurn(player[currentTurn].getName()));
@@ -76,12 +69,36 @@ public class Controller {
 				if (player[currentTurn].getLocation() < oldLoc) {
 					player[currentTurn].account.add(200);
 				}
-				
+				for (int i = 0; i < player.length; i++) {
+					if(player[i].account.getBalance() < 0) {
+						player[i].bankrupt = true;
+					}
+				}
 				updateGUI();
 				
 				currentTurn = (currentTurn+1) % player.length;
 			}
+			for (int i = 0; i < player.length; i++) {
+				if(player[i].bankrupt == true) {
+					playerWon(findWinner());
+					break;
+				}
+			}
 		}
+	}
+
+	public Player findWinner() {
+		Player tempPlayer = null;
+		int max = 0;
+		for (int i = 0; i < player.length; i++) {
+			if (!player[i].bankrupt) {
+				if(player[i].account.getBalance() > max) {
+					max = player[i].account.getBalance();
+					tempPlayer = player[i];
+				}
+			}
+		}	
+		return tempPlayer;
 	}
 
 	public void updateGUI() {
@@ -96,8 +113,8 @@ public class Controller {
 		
 	}
 	
-	public void playerWon() {
-		gui.showMessage(Language.playerWon(player[currentTurn].getName()));
+	public void playerWon(Player winningPlayer) {
+		gui.showMessage(Language.playerWon(winningPlayer.getName()));
 		if(gui.getUserButtonPressed(Language.replay(), Language.replayConfirm(), Language.replayDecline())==Language.replayConfirm()) {
 			init();
 		} else {
@@ -115,9 +132,6 @@ public class Controller {
 		return tempCards;
 	}
 
-	public void playTurn(Player player) {
-		
-	}
 	public ChanceCard[] MakeCards(){
 		//Makes empty array of ChanceCards
 		ChanceCard[] chanceCard = new ChanceCard[20];
@@ -235,16 +249,14 @@ public class Controller {
 			player[currentTurn].free = false;
 		}
 		
-		//if (board.fields[fieldID].isOwnable) {
-			if (board.fields[fieldID].isOwned == true){
-				player[currentTurn].account.add(-board.fields[fieldID].rent);
-				board.fields[fieldID].owner.account.add(board.fields[fieldID].rent);
-			}else{
-				player[currentTurn].account.add(-board.fields[fieldID].price);
-				board.fields[fieldID].owner = player[currentTurn];
-				board.fields[fieldID].isOwned = true;
-			}
-		//}
+		if (board.fields[fieldID].isOwned == true){
+			player[currentTurn].account.add(-board.fields[fieldID].rent);
+			board.fields[fieldID].owner.account.add(board.fields[fieldID].rent);
+		}else{
+			player[currentTurn].account.add(-board.fields[fieldID].price);
+			board.fields[fieldID].owner = player[currentTurn];
+			board.fields[fieldID].isOwned = true;
+		}
 		if (board.fields[fieldID].isChance) {
 
 		}
