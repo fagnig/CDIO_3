@@ -6,10 +6,4 @@ public class NeutralField extends Field {
 		super(newText);
 	}
 
-	@Override
-	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

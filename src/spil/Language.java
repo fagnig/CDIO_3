@@ -28,8 +28,12 @@ public class Language {
 	public static String newTurn(String name) {
 		return "Det er "+name+"'s tur";
 	}
-
+	
 	public static String diceRoll() {
 		return "Rul med terningen mester!";
+	}
+
+	public static String inPrison() {
+		return "Du er i fængsel, så du kommer først ud næste tur!";
 	}
 }

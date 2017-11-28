@@ -6,8 +6,5 @@ public class ChanceField extends Field{
 		super(newText);
 	}
 
-	@Override
-	public void landOnField(Player landingPlayer) {
-	}
 
 }

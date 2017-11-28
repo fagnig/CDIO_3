@@ -1,11 +1,9 @@
 package spil;
 
-import java.awt.Color;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import gui_codebehind.*;
 import gui_main.*;
 import gui_fields.*;
 
@@ -14,22 +12,24 @@ public class Controller {
 	
 	Board board = new Board();
 	int currentTurn;
-	Dice dice;
+	Dice dice = new Dice();
 	GUI gui;
 
 	Player player[];
-	ChanceCard chanceCard[];
-	ChanceCard usedCardPile[];
+	GUI_Player playerGUI[];
+	ChanceCard chanceCard[] = new ChanceCard[20];
+	ChanceCard usedCardPile[] = new ChanceCard[20];
 		
 	public void init() {
 		board.init();
 		currentTurn = 0;
 		board.initGUI();
-		
+		chanceCard = shuffleCards(chanceCard);
 		gui = new GUI(board.fieldsGUI);
 		
 		int playerAmount = gui.getUserInteger(Language.playerCount(), 2, 4);
 		player = new Player[playerAmount];
+		playerGUI = new GUI_Player[playerAmount];
 		
 		for (int i = 0; i < playerAmount; i++) {
 			String tempName = gui.getUserString(Language.playerNameEntry(i+1));
@@ -39,6 +39,7 @@ public class Controller {
 		for (int i = 0; i < player.length; i++) {
 			GUI_Player tempPlayer = new GUI_Player(player[i].getName(), player[i].account.getBalance());
 			gui.addPlayer(tempPlayer);
+			playerGUI[i]=tempPlayer;
 		}
 		
 		
@@ -54,15 +55,44 @@ public class Controller {
 		
 		while(true) {
 			gui.showMessage(Language.newTurn(player[currentTurn].getName()));
-			gui.showMessage(Language.diceRoll());
-			
-			
+			if(player[currentTurn].free == false) {
+				gui.showMessage(Language.inPrison());
+				player[currentTurn].free = true;
+			} else {
+				gui.showMessage(Language.diceRoll());
+				dice.roll();
+				
+				int oldLoc = player[currentTurn].getLocation();
+				
+				player[currentTurn].setLocation((oldLoc+dice.getFaceValue())%24);
+				
+				if (player[currentTurn].getLocation() < oldLoc) {
+					player[currentTurn].account.add(200);
+				}
+				
+				landOnField(player[currentTurn].getLocation());
+				
+				oldLoc = player[currentTurn].getLocation();
+				if (player[currentTurn].getLocation() < oldLoc) {
+					player[currentTurn].account.add(200);
+				}
+				
+				updateGUI();
+				
+				currentTurn = (currentTurn+1) % player.length;
+			}
 		}
 	}
-	
+
 	public void updateGUI() {
-		//set dice
-		//set player position
+		for (int i = 0; i < board.fieldsGUI.length; i++) {
+			board.fieldsGUI[i].removeAllCars();
+		}
+		for (int i = 0; i < player.length; i++) {
+			board.fieldsGUI[player[i].getLocation()].setCar(playerGUI[i], true);
+			playerGUI[i].setBalance(player[i].account.getBalance());
+		}
+		gui.setDice(dice.getFaces()[0], dice.getFaces()[1]);
 		
 	}
 	
@@ -196,6 +226,27 @@ public class Controller {
 			
 		}
 	break;
+		}
+	}
+	
+	public void landOnField(int fieldID){
+		if(fieldID == 18) {
+			player[currentTurn].setLocation(6);
+			player[currentTurn].free = false;
+		}
+		
+		//if (board.fields[fieldID].isOwnable) {
+			if (board.fields[fieldID].isOwned == true){
+				player[currentTurn].account.add(-board.fields[fieldID].rent);
+				board.fields[fieldID].owner.account.add(board.fields[fieldID].rent);
+			}else{
+				player[currentTurn].account.add(-board.fields[fieldID].price);
+				board.fields[fieldID].owner = player[currentTurn];
+				board.fields[fieldID].isOwned = true;
+			}
+		//}
+		if (board.fields[fieldID].isChance) {
+
 		}
 	}
 	
