@@ -9,14 +9,27 @@ public class Player {
 	boolean free;
 	boolean bankrupt;
 	boolean gotCard;
+	int location;
 	
-	Player(String newName, Color newColor){
+	public Player(String newName){
 		name = newName;
-		color = newColor;
-		
+	
+		location = 0;
 		account = new Account(Controller.PLAYER_START_BALANCE);
 		free = true;
 		bankrupt = false;
 		gotCard = false;
+	}
+	
+	public void setLocation(int newLoc) {
+		location = newLoc;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public int getLocation() {
+		return location;
 	}
 }

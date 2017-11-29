@@ -1,15 +1,26 @@
 package spil;
 
+import java.awt.Color;
+
 public abstract class Field {
-	public class NeutralField {
-
-	}
-
+	Player owner;
 	String fieldText;
+	Color color;
+	int rent;
+	int price;
+	boolean isOwned = false;
+	boolean isOwnable = false;
+	boolean isChance = false;
 	
-	Field(String newText){
+	public Field(String newText){
 		fieldText = newText;
 	}
-	
-	public abstract void landOnField(Player landingPlayer);
+
+	public boolean isChance() {
+		return false;
+	}
+
+	public boolean isOwnable() {
+		return false;
+	}
 }

@@ -1,19 +1,19 @@
 package spil;
 
-public class OwnableField extends Field {
-	Player owner;
-	int rent;
-	int price;
-	
-	public OwnableField(String newText, int newPrice) {
-		super(newText);
-		price = newPrice;
-		rent = newPrice / 2; //??
-	}
+import java.awt.Color;
 
-	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
+public class OwnableField extends Field {
+	Color color;
+	boolean isOwnable = true;
+	
+	public OwnableField(String newText, Color Color, int newPrice) {
+		super(newText);
+		color = Color;
+		price = newPrice;
+		rent = newPrice; //?? 
 	}
 	
+	public boolean isOwnable() {
+		return isOwnable;
+	}
 }

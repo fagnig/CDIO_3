@@ -1,15 +1,13 @@
 package spil;
 
 public class ChanceField extends Field{
-
-	ChanceField(String newText) {
+	boolean isChance = true;
+	public ChanceField(String newText) {
 		super(newText);
 	}
 
-	@Override
-	public void landOnField(Player landingPlayer) {
-		// TODO Auto-generated method stub
-		
+	public boolean isChance() {
+		return isChance;
 	}
 
 }
