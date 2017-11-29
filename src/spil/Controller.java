@@ -25,7 +25,7 @@ public class Controller {
 		currentTurn = 0;
 		board.initGUI();
 		chanceCard = makeCards();
-		//chanceCard = shuffleCards(chanceCard);
+		chanceCard = shuffleCards(chanceCard);
 		gui = new GUI(board.fieldsGUI);
 		
 		int playerAmount = gui.getUserInteger(Language.playerCount(), 2, 4);
@@ -131,7 +131,7 @@ public class Controller {
 	}
 	
 	public ChanceCard[] shuffleCards(ChanceCard[] cards) {
-		ChanceCard[] tempCards = new ChanceCard[20];
+		ChanceCard[] tempCards = cards;
 		
 		List<ChanceCard> list = Arrays.asList(tempCards); //Convert to list
 		Collections.shuffle(list); //Shuffle list
