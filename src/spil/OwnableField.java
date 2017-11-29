@@ -12,4 +12,8 @@ public class OwnableField extends Field {
 		price = newPrice;
 		rent = newPrice; //?? 
 	}
+	
+	public boolean isOwnable() {
+		return isOwnable;
+	}
 }

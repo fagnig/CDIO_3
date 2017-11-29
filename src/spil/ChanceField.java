@@ -6,5 +6,8 @@ public class ChanceField extends Field{
 		super(newText);
 	}
 
+	public boolean isChance() {
+		return isChance;
+	}
 
 }

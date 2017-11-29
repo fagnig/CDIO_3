@@ -15,4 +15,12 @@ public abstract class Field {
 	public Field(String newText){
 		fieldText = newText;
 	}
+
+	public boolean isChance() {
+		return false;
+	}
+
+	public boolean isOwnable() {
+		return false;
+	}
 }

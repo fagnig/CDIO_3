@@ -24,7 +24,8 @@ public class Controller {
 		board.init();
 		currentTurn = 0;
 		board.initGUI();
-		chanceCard = shuffleCards(chanceCard);
+		chanceCard = makeCards();
+		//chanceCard = shuffleCards(chanceCard);
 		gui = new GUI(board.fieldsGUI);
 		
 		int playerAmount = gui.getUserInteger(Language.playerCount(), 2, 4);
@@ -139,7 +140,7 @@ public class Controller {
 		return tempCards;
 	}
 
-	public ChanceCard[] MakeCards(){
+	public ChanceCard[] makeCards(){
 		//Makes empty array of ChanceCards
 		ChanceCard[] chanceCard = new ChanceCard[20];
 		chanceCard[0] = new ChanceCard("tag et chancekort mere");
@@ -290,24 +291,24 @@ public class Controller {
 			player[currentTurn].setLocation(6);
 			player[currentTurn].free = false;
 		}
-		
-		if (board.fields[fieldID].isOwned == true){
-			player[currentTurn].account.add(-board.fields[fieldID].rent);
-			board.fields[fieldID].owner.account.add(board.fields[fieldID].rent);
-		}else{
-			player[currentTurn].account.add(-board.fields[fieldID].price);
-			board.fields[fieldID].owner = player[currentTurn];
-			board.fields[fieldID].isOwned = true;
+		if (board.fields[fieldID].isOwnable()) {
+			if (board.fields[fieldID].isOwned == true){
+				player[currentTurn].account.add(-board.fields[fieldID].rent);
+				board.fields[fieldID].owner.account.add(board.fields[fieldID].rent);
+			}else{
+				player[currentTurn].account.add(-board.fields[fieldID].price);
+				board.fields[fieldID].owner = player[currentTurn];
+				board.fields[fieldID].isOwned = true;
+			}
 		}
-		if (board.fields[fieldID].isChance) {
+		if (board.fields[fieldID].isChance()) {
 			for(int i=0;i<chanceCard.length;i++) {
-				if (chanceCard[i] == null) {
-					break;
-				}else {
+				if (chanceCard[i] != null) {
 					resolveChance(chanceCard[i].chanceID);
 					gui.displayChanceCard(chanceCard[i].chanceText);
 					usedCardPile[i]=chanceCard[i];
 					chanceCard[i]=null;
+					break;
 				}
 			}
 		}
