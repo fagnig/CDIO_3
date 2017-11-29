@@ -48,6 +48,12 @@ public class Controller {
 		
 		while(true) {
 			gui.showMessage(Language.newTurn(player[currentTurn].getName()));
+			
+			if(player[currentTurn].gotCard == true && player[currentTurn].free == false) {
+				player[currentTurn].gotCard = false;
+				player[currentTurn].free = true;
+			}
+	
 			if(player[currentTurn].free == false) {
 				gui.showMessage(Language.inPrison());
 				player[currentTurn].free = true;
@@ -161,85 +167,120 @@ public class Controller {
 	public void resolveChance(int id){
 		switch (id) {
 		case 0 :{
-			
+			landOnField(player[currentTurn].getLocation());
 		}
 	break;
 		case 1 :{
-			
+			player[currentTurn].setLocation(0);
+			player[currentTurn].account.add(2);
 		}
 	break;
 		case 2 :{ 
-			
+			player[currentTurn].setLocation(player[currentTurn].getLocation()+5);
 		}
 	break;
 		case 3 :{
-			
+			forceMoveToField(10);
 		}
 	break;
 		case 4 :{
-			
+			String label = gui.getUserSelection("Ryk et felt frem, eller tag et chancekort mere", "1 felt","Nyt kort");
+			if (label.equals("1 felt")) {
+				player[currentTurn].setLocation(player[currentTurn].getLocation()+1);
+			}else {
+				landOnField(player[currentTurn].getLocation());
+			}
 		}
 	break;
 		case 5 :{
-			
+			landOnField(player[currentTurn].getLocation());
 		}
 	break;
 		case 6 :{
-			
+			player[currentTurn].account.add(-2);
 		}
 	break;
 		case 7 :{
-			
+			if(player[currentTurn].getLocation() > 10 || player[currentTurn].getLocation() < 20) {
+				forceMoveToField(19);
+			}else {
+				forceMoveToField(10);
+			}
 		}
 	break;
 		case 8 :{
-			
+			forceMoveToField(4);
 		}
 	break;
 		case 9 :{
-			
+			player[currentTurn].gotCard = true;
 		}
 	break;
 		case 10 :{
-			
+			player[currentTurn].setLocation(23);
+			landOnField(player[currentTurn].getLocation());
 		}
 	break;
 		case 11 :{
-			
+			landOnField(player[currentTurn].getLocation());
 		}
 	break;
 		case 12 :{
-			
+			landOnField(player[currentTurn].getLocation());
 		}
 	break;
 		case 13 :{
-			
+			for(int i=0; i<player.length;i++) {
+				player[i].account.add(-1);
+			}
+			player[currentTurn].account.add(player.length);
 		}
 	break;
 		case 14 :{
-			
+			if(player[currentTurn].getLocation() < 7) {
+				forceMoveToField(7);
+			}else {
+				forceMoveToField(22);
+			}
 		}
 	break;
 		case 15 :{
-			
+			player[currentTurn].account.add(2);
 		}
 	break;
 		case 16 :{
-			
+			forceMoveToField(13);
 		}
 	break;
 		case 17 :{
-			
+			forceMoveToField(10);
 		}
 	break;
 		case 18 :{
-			
+			if(player[currentTurn].getLocation() < 4 || player[currentTurn].getLocation() > 15) {
+				forceMoveToField(13);
+			}else {
+				forceMoveToField(4);
+			}
 		}
 	break;
 		case 19 :{  
-			
+			if(player[currentTurn].getLocation() < 16) {
+				forceMoveToField(16);
+			}else {
+				forceMoveToField(1);
+			}
 		}
 	break;
+		}
+	}
+	
+	public void forceMoveToField(int fieldID) {
+		player[currentTurn].setLocation(fieldID);
+		if(board.fields[fieldID].isOwned == true) {
+			landOnField(player[currentTurn].getLocation());
+		}else {
+			board.fields[fieldID].owner = player[currentTurn];
 		}
 	}
 	
@@ -258,8 +299,18 @@ public class Controller {
 			board.fields[fieldID].isOwned = true;
 		}
 		if (board.fields[fieldID].isChance) {
-
+			for(int i=0;i<chanceCard.length;i++) {
+				if (chanceCard[i] == null) {
+					break;
+				}else {
+					resolveChance(chanceCard[i].chanceID);
+					gui.displayChanceCard(chanceCard[i].chanceText);
+					usedCardPile[i]=chanceCard[i];
+					chanceCard[i]=null;
+				}
+			}
 		}
+		
 	}
 	
 	public static void main(String [] args) {
