@@ -36,4 +36,8 @@ public class Language {
 	public static String inPrison() {
 		return "Du er i fængsel, så du kommer først ud næste tur!";
 	}
+
+	public static String usedPrisonCard() {
+		return "Du brugte dit kom-ud-af-fængslet-gratis kort";
+	}
 }

@@ -8,7 +8,7 @@ import gui_main.*;
 import gui_fields.*;
 
 public class Controller {
-	static int PLAYER_START_BALANCE = 30;
+	static int PLAYER_START_BALANCE = 20;
 	
 	Board board = new Board();
 	int currentTurn;
@@ -52,6 +52,7 @@ public class Controller {
 			if(player[currentTurn].gotCard == true && player[currentTurn].free == false) {
 				player[currentTurn].gotCard = false;
 				player[currentTurn].free = true;
+				gui.showMessage(Language.usedPrisonCard());
 			}
 	
 			if(player[currentTurn].free == false) {
@@ -66,15 +67,15 @@ public class Controller {
 				player[currentTurn].setLocation((oldLoc+dice.getFaceValue())%24);
 				
 				if (player[currentTurn].getLocation() < oldLoc) {
-					player[currentTurn].account.add(200);
+					player[currentTurn].account.add(2);
 				}
-				
-				landOnField(player[currentTurn].getLocation());
 				
 				oldLoc = player[currentTurn].getLocation();
+				landOnField(player[currentTurn].getLocation());
 				if (player[currentTurn].getLocation() < oldLoc) {
-					player[currentTurn].account.add(200);
+					player[currentTurn].account.add(2);
 				}
+				
 				for (int i = 0; i < player.length; i++) {
 					if(player[i].account.getBalance() < 0) {
 						player[i].bankrupt = true;

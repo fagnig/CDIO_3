@@ -10,6 +10,6 @@ public class OwnableField extends Field {
 		super(newText);
 		color = Color;
 		price = newPrice;
-		rent = newPrice / 2; //?? 
+		rent = newPrice; //?? 
 	}
 }
