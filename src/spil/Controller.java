@@ -1,3 +1,4 @@
+
 package spil;
 
 import java.util.Arrays;
@@ -58,6 +59,7 @@ public class Controller {
 	
 			if(player[currentTurn].free == false) {
 				gui.showMessage(Language.inPrison());
+				player[currentTurn].account.add(-2); //it costs to get out of jail
 				player[currentTurn].free = true;
 			} else {
 				gui.showMessage(Language.diceRoll());
