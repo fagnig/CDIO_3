@@ -176,7 +176,7 @@ public class Controller {
 	break;
 		case 1 :{
 			player[currentTurn].setLocation(0);
-			player[currentTurn].account.add(2);
+//			player[currentTurn].account.add(2); /*you already get 2 coins when landing on start*/
 		}
 	break;
 		case 2 :{ 
