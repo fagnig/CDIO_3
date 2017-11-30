@@ -292,15 +292,18 @@ public class Controller {
 		if(fieldID == 18) {
 			player[currentTurn].setLocation(6);
 			player[currentTurn].free = false;
+			gui.displayChanceCard(player[currentTurn].name + "slog en " +dice.getFaceValue()+ " og ryger i fængsel");
 		}
 		if (board.fields[fieldID].isOwnable()) {
 			if (board.fields[fieldID].isOwned == true){
 				player[currentTurn].account.add(-board.fields[fieldID].rent);
 				board.fields[fieldID].owner.account.add(board.fields[fieldID].rent);
+				gui.displayChanceCard(player[currentTurn].name + "betaler husleje til "+board.fields[fieldID].owner.name);
 			}else{
 				player[currentTurn].account.add(-board.fields[fieldID].price);
 				board.fields[fieldID].owner = player[currentTurn];
 				board.fields[fieldID].isOwned = true;
+				gui.displayChanceCard(player[currentTurn].name + " har købt " + board.fields[fieldID].fieldText+ " for" + board.fields[fieldID].price + " mønt(er)"  );
 			}
 		}
 		if (board.fields[fieldID].isChance()) {
