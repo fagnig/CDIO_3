@@ -9,8 +9,8 @@ public class Dice {
 	
 	
 	public void roll() {
-		t1 = dice.nextInt(5)+1;
-		t2 = dice.nextInt(5)+1;
+		t1 = dice.nextInt(6)+1;
+		t2 = dice.nextInt(6)+1;
 		faceValue = t1+t2 ;
 	}
 	
